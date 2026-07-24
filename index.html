@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Marca BIP — Central de Identidade Visual</title>
+  <meta name="description"
+    content="A fonte oficial da identidade visual da BIP — Plataforma Brasil de Investimentos Climáticos e para a Transformação Ecológica. Logotipos, cores, tipografia, régua de parceiros e manual da marca." />
+
+  <link rel="icon" href="assets/favicon/favicon.ico" sizes="any" />
+  <link rel="icon" href="assets/favicon/favicon-32x32.png" type="image/png" />
+  <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon-180x180.png" />
+  <meta name="theme-color" content="#012169" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#conteudo" data-i18n="pular">Pular para o conteúdo</a>
+
+  <header class="topo">
+    <div class="topo__interno">
+      <a class="topo__marca" href="#topo">
+        <img src="assets/logos/svg/logo-bip-redux.svg" alt="BIP" width="132" height="58" />
+        <span class="topo__nome" data-slot="nomeSite"></span>
+      </a>
+
+      <nav class="topo__nav" aria-label="Seções do site">
+        <ul data-slot="nav"></ul>
+      </nav>
+
+      <button class="lang" type="button" data-slot="langToggle" aria-live="polite"></button>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero" id="topo" data-slot="hero"></section>
+
+    <div class="corpo">
+      <section class="secao" id="logotipo" data-slot="logotipo"></section>
+      <section class="secao" id="cores" data-slot="cores"></section>
+      <section class="secao" id="tipografia" data-slot="tipografia"></section>
+      <section class="secao" id="parceiros" data-slot="parceiros"></section>
+      <section class="secao" id="manual" data-slot="manual"></section>
+      <section class="secao" id="design-system" data-slot="designSystem"></section>
+      <section class="secao" id="downloads" data-slot="downloads"></section>
+      <section class="secao" id="governanca" data-slot="governanca"></section>
+    </div>
+  </main>
+
+  <footer class="rodape" data-slot="rodape"></footer>
+
+  <div class="toast" data-slot="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>
