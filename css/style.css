@@ -166,7 +166,7 @@ a { color:var(--blue-500); }
 .familia__nome { font-size:21px; font-weight:bold; color:var(--blue-500); margin:0 0 6px; }
 .familia__desc { font-size:15.5px; color:var(--ink-2); margin:0 0 24px; max-width:60ch; }
 
-.grade-logos { display:grid; gap:22px; grid-template-columns:repeat(auto-fill, minmax(258px, 1fr)); }
+.grade-logos { display:grid; gap:22px; grid-template-columns:repeat(auto-fill, minmax(min(258px, 100%), 1fr)); }
 
 .logo-card {
   border:1px solid var(--line); border-radius:var(--radius);
@@ -196,7 +196,7 @@ a { color:var(--blue-500); }
 .formato:hover { background:var(--blue-100); border-color:var(--blue-200); }
 
 /* --------------------------------------------------------------- regras -- */
-.regras { display:grid; gap:22px; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); }
+.regras { display:grid; gap:22px; grid-template-columns:repeat(auto-fit, minmax(min(280px, 100%), 1fr)); }
 .regra {
   background:var(--surface); border-radius:var(--radius); padding:26px;
   border:1px solid var(--line);
@@ -206,7 +206,7 @@ a { color:var(--blue-500); }
 .regra img { margin-top:20px; border-radius:8px; background:var(--white); }
 
 .lista-nao { list-style:none; padding:0; margin:0; display:grid; gap:12px;
-             grid-template-columns:repeat(auto-fit, minmax(275px, 1fr)); }
+             grid-template-columns:repeat(auto-fit, minmax(min(275px, 100%), 1fr)); }
 .lista-nao li {
   display:flex; gap:12px; align-items:flex-start;
   font-size:15px; color:var(--ink-2);
@@ -219,7 +219,7 @@ a { color:var(--blue-500); }
 }
 
 /* --------------------------------------------------------------- cores --- */
-.grade-cores { display:grid; gap:20px; grid-template-columns:repeat(auto-fit, minmax(228px, 1fr)); }
+.grade-cores { display:grid; gap:20px; grid-template-columns:repeat(auto-fit, minmax(min(228px, 100%), 1fr)); }
 
 .cor-card {
   border-radius:var(--radius); overflow:hidden; border:1px solid var(--line);
@@ -273,7 +273,7 @@ a { color:var(--blue-500); }
 .tipo-amostra__meta { font-size:13px; color:var(--ink-3); white-space:nowrap; }
 
 /* ------------------------------------------------------------ parceiros -- */
-.grade-parceiros { display:grid; gap:22px; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); }
+.grade-parceiros { display:grid; gap:22px; grid-template-columns:repeat(auto-fit, minmax(min(300px, 100%), 1fr)); }
 .parceiro-card {
   border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; background:var(--white);
 }
@@ -336,7 +336,7 @@ a { color:var(--blue-500); }
 }
 
 /* ------------------------------------------------------------ downloads -- */
-.grade-info { display:grid; gap:20px; grid-template-columns:repeat(auto-fit, minmax(238px, 1fr)); }
+.grade-info { display:grid; gap:20px; grid-template-columns:repeat(auto-fit, minmax(min(238px, 100%), 1fr)); }
 .info-card {
   border:1px solid var(--line); border-radius:var(--radius); padding:26px; background:var(--white);
 }
@@ -355,7 +355,7 @@ a { color:var(--blue-500); }
 }
 
 /* ----------------------------------------------------------- governança -- */
-.blocos-gov { display:grid; gap:20px; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); }
+.blocos-gov { display:grid; gap:20px; grid-template-columns:repeat(auto-fit, minmax(min(300px, 100%), 1fr)); }
 .bloco-gov {
   border:1px solid var(--line); border-radius:var(--radius); padding:28px; background:var(--white);
 }
@@ -389,7 +389,9 @@ a { color:var(--blue-500); }
 /* ------------------------------------------------------------ responsivo -- */
 @media (max-width:860px) {
   .topo__interno { flex-wrap:wrap; gap:12px 20px; }
-  .topo__nav { order:3; width:100%; margin:0 -24px; padding:0 24px; }
+  /* A nav vira uma linha própria e rola dentro de si mesma quando os rótulos
+     não cabem — o overflow-x:auto da regra base cuida disso. */
+  .topo__nav { order:3; width:100%; }
   .hero { padding:60px 24px 68px; }
   .hero__logo { height:78px; margin-bottom:30px; }
   .secao { padding:60px 0; }
