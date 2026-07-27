@@ -28,20 +28,20 @@ window.CONFIG = {
      Rótulos de interface
      --------------------------------------------------------------------- */
   ui: {
-    nomeSite:        { pt: "Marca BIP",  en: "BIP Brand" },
-    baixar:          { pt: "Baixar",     en: "Download" },
-    copiado:         { pt: "Copiado",    en: "Copied" },
-    copiarHex:       { pt: "Clique para copiar o HEX", en: "Click to copy the HEX" },
-    atualizadoEm:    { pt: "Atualizado em", en: "Updated" },
-    verManual:       { pt: "Abrir o manual completo", en: "Open the full manual" },
-    irParaTopo:      { pt: "Voltar ao topo", en: "Back to top" },
-    trocarIdioma:    { pt: "English", en: "Português" },
-    menu:            { pt: "Seções",    en: "Sections" },
+    nomeSite: { pt: "Marca BIP", en: "BIP Brand" },
+    baixar: { pt: "Baixar", en: "Download" },
+    copiado: { pt: "Copiado", en: "Copied" },
+    copiarHex: { pt: "Clique para copiar o HEX", en: "Click to copy the HEX" },
+    atualizadoEm: { pt: "Atualizado em", en: "Updated" },
+    verManual: { pt: "Abrir o manual completo", en: "Open the full manual" },
+    irParaTopo: { pt: "Voltar ao topo", en: "Back to top" },
+    trocarIdioma: { pt: "English", en: "Português" },
+    menu: { pt: "Seções", en: "Sections" },
   },
 
   estados: {
-    "aprovado":      { pt: "Aprovado",      en: "Approved" },
-    "em-revisao":    { pt: "Em revisão",    en: "Under review" },
+    "aprovado": { pt: "Aprovado", en: "Approved" },
+    "em-revisao": { pt: "Em revisão", en: "Under review" },
     "em-construcao": { pt: "Em construção", en: "In progress" },
   },
 
@@ -83,7 +83,7 @@ window.CONFIG = {
   logotipo: {
     estado: "aprovado",
     atualizadoEm: "2026-07-23",
-    titulo:    { pt: "Logotipo", en: "Logo" },
+    titulo: { pt: "Logotipo", en: "Logo" },
     descricao: {
       pt: "Quatro assinaturas, cada uma com quatro versões. Use sempre a assinatura principal colorida; as demais existem para restrições de fundo, impressão ou espaço.",
       en: "Four lockups, each in four versions. Always default to the primary colour lockup; the others exist for background, print or space constraints.",
@@ -182,9 +182,9 @@ window.CONFIG = {
       titulo: { pt: "Usos incorretos", en: "Incorrect uses" },
       itens: [
         { pt: "Não altere a cor. Use as cores da paleta.", en: "Do not change the colours. Use the palette." },
-        { pt: "Não gire o logotipo.",     en: "Do not rotate the logo." },
-        { pt: "Não corte o logotipo.",    en: "Do not crop the logo." },
-        { pt: "Não altere a opacidade.",  en: "Do not change the opacity." },
+        { pt: "Não gire o logotipo.", en: "Do not rotate the logo." },
+        { pt: "Não corte o logotipo.", en: "Do not crop the logo." },
+        { pt: "Não altere a opacidade.", en: "Do not change the opacity." },
         { pt: "Não distorça as proporções.", en: "Do not distort the proportions." },
         { pt: "Não aplique sobre fundos que comprometam o contraste.", en: "Do not place it on backgrounds that compromise contrast." },
       ],
@@ -247,19 +247,19 @@ window.CONFIG = {
         en: "Light tones (50–200) serve backgrounds and surfaces; dark tones (600–900) serve text and overlays.",
       },
       blue: [
-        ["blue-50","#E6E9F0"],["blue-100","#B0BAD1"],["blue-200","#8A99BA"],["blue-300","#556A9B"],
-        ["blue-400","#344D87"],["blue-500","#012169"],["blue-600","#011E60"],["blue-700","#01174B"],
-        ["blue-800","#01123A"],["blue-900","#000E2C"],
+        ["blue-50", "#E6E9F0"], ["blue-100", "#B0BAD1"], ["blue-200", "#8A99BA"], ["blue-300", "#556A9B"],
+        ["blue-400", "#344D87"], ["blue-500", "#012169"], ["blue-600", "#011E60"], ["blue-700", "#01174B"],
+        ["blue-800", "#01123A"], ["blue-900", "#000E2C"],
       ],
       green: [
-        ["green-50","#E6F4EC"],["green-100","#B0DCC3"],["green-200","#8ACBA5"],["green-300","#54B37C"],
-        ["green-400","#33A563"],["green-500","#008E3C"],["green-600","#008137"],["green-700","#00652B"],
-        ["green-800","#004E21"],["green-900","#003C19"],
+        ["green-50", "#E6F4EC"], ["green-100", "#B0DCC3"], ["green-200", "#8ACBA5"], ["green-300", "#54B37C"],
+        ["green-400", "#33A563"], ["green-500", "#008E3C"], ["green-600", "#008137"], ["green-700", "#00652B"],
+        ["green-800", "#004E21"], ["green-900", "#003C19"],
       ],
       yellow: [
-        ["yellow-50","#FFFCE6"],["yellow-100","#FFF4B0"],["yellow-200","#FFEF8A"],["yellow-300","#FEE854"],
-        ["yellow-400","#FEE433"],["yellow-500","#FEDD00"],["yellow-600","#E7C900"],["yellow-700","#B49D00"],
-        ["yellow-800","#8C7A00"],["yellow-900","#6B5D00"],
+        ["yellow-50", "#FFFCE6"], ["yellow-100", "#FFF4B0"], ["yellow-200", "#FFEF8A"], ["yellow-300", "#FEE854"],
+        ["yellow-400", "#FEE433"], ["yellow-500", "#FEDD00"], ["yellow-600", "#E7C900"], ["yellow-700", "#B49D00"],
+        ["yellow-800", "#8C7A00"], ["yellow-900", "#6B5D00"],
       ],
     },
 
@@ -310,10 +310,10 @@ window.CONFIG = {
       },
     ],
     amostras: [
-      { peso: 300, tamanho: 56, texto: { pt: "Arial Light",      en: "Arial Light" } },
-      { peso: 400, tamanho: 42, texto: { pt: "Arial Regular",    en: "Arial Regular" } },
-      { peso: 700, tamanho: 42, texto: { pt: "Arial Bold",       en: "Arial Bold" } },
-      { peso: 800, tamanho: 42, texto: { pt: "Arial ExtraBold",  en: "Arial ExtraBold" } },
+      { peso: 300, tamanho: 56, texto: { pt: "Arial Light", en: "Arial Light" } },
+      { peso: 400, tamanho: 42, texto: { pt: "Arial Regular", en: "Arial Regular" } },
+      { peso: 700, tamanho: 42, texto: { pt: "Arial Bold", en: "Arial Bold" } },
+      { peso: 800, tamanho: 42, texto: { pt: "Arial ExtraBold", en: "Arial ExtraBold" } },
     ],
   },
 
@@ -436,7 +436,7 @@ window.CONFIG = {
   designSystem: {
     estado: "em-construcao",
     atualizadoEm: "2026-07-24",
-    previsao: { pt: "Previsão: 4º trimestre de 2026", en: "Expected: Q4 2026" },
+    previsao: { pt: "Previsão: 3º trimestre de 2026", en: "Expected: Q3 2026" },
     titulo: { pt: "Design System", en: "Design System" },
     descricao: {
       pt: "Tokens, componentes e regras de acessibilidade para produtos digitais da BIP. Em construção — as escalas tonais desta página são a base dos tokens.",
