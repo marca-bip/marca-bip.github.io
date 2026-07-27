@@ -77,9 +77,15 @@ cp "$SRC/Régua de Parceiros/Régua Parceiros [EN].png"                "$DST/par
 cp "$SRC/Régua de Parceiros/BIP + GOV + Ministérios [PT].pdf"        "$DST/parceiros/regua-bip-gov-ministerios-horizontal-pt.pdf"
 cp "$SRC/Régua de Parceiros/BIP + GOV + Ministérios Vert [PT].pdf"   "$DST/parceiros/regua-bip-gov-ministerios-vertical-pt.pdf"
 cp "$SRC/Régua de Parceiros/GOV + Ministérios [PT].pdf"              "$DST/parceiros/regua-gov-ministerios-pt.pdf"
+# EN — réguas espelhadas (nomes de órgãos em inglês)
+cp "$SRC/Régua de Parceiros/BIP + GOV + ministries [EN].pdf"        "$DST/parceiros/regua-bip-gov-ministerios-horizontal-en.pdf"
+cp "$SRC/Régua de Parceiros/BIP + GOV + ministries Vert [EN].pdf"   "$DST/parceiros/regua-bip-gov-ministerios-vertical-en.pdf"
+cp "$SRC/Régua de Parceiros/Gov + Ministries [EN].pdf"              "$DST/parceiros/regua-gov-ministerios-en.pdf"
 
-# Previews PNG das réguas que só existem em PDF (300 dpi → redimensionado)
-for pair in "regua-bip-gov-ministerios-horizontal-pt" "regua-bip-gov-ministerios-vertical-pt" "regua-gov-ministerios-pt"; do
+# Previews PNG das réguas que só existem em PDF (150 dpi → redimensionado)
+for pair in \
+  "regua-bip-gov-ministerios-horizontal-pt" "regua-bip-gov-ministerios-vertical-pt" "regua-gov-ministerios-pt" \
+  "regua-bip-gov-ministerios-horizontal-en" "regua-bip-gov-ministerios-vertical-en" "regua-gov-ministerios-en"; do
   pdftoppm -r 150 -png -singlefile "$DST/parceiros/$pair.pdf" "$DST/parceiros/$pair"
 done
 
@@ -95,8 +101,14 @@ done
 
 cp "$SRC/Favicon/"*.png "$SRC/Favicon/favicon.ico" "$DST/favicon/"
 
+# PT — edição normativa em português
 cp "$SRC/Manual da Marca/Manual de Marca BIP v2.0 - Julho 2026.pdf" "$DST/manual/manual-marca-bip-v2.pdf"
 cp "$SRC/Manual da Marca/Manual de Marca BIP v2.0 - fonte editável.html" "$(dirname "$DST")/manual/index.html"
+
+# EN — edição normativa em inglês (espelhada)
+mkdir -p "$(dirname "$DST")/manual/en"
+cp "$SRC/Manual da Marca/BIP Brand Guidelines v2.0 - July 2026.pdf" "$DST/manual/bip-brand-guidelines-v2.pdf"
+cp "$SRC/Manual da Marca/BIP Brand Guidelines v2.0 - editable source.html" "$(dirname "$DST")/manual/en/index.html"
 
 echo
 echo "✓ Concluído. Peso total: $(du -sh "$DST" | cut -f1)"

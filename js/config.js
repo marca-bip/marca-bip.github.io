@@ -322,7 +322,7 @@ window.CONFIG = {
      --------------------------------------------------------------------- */
   parceiros: {
     estado: "aprovado",
-    atualizadoEm: "2026-07-23",
+    atualizadoEm: "2026-07-24",
     titulo: { pt: "Régua de Parceiros", en: "Partner Lockups" },
     descricao: {
       pt: "Como a marca BIP se aplica junto às marcas do Governo Federal, dos ministérios e do BNDES, conforme as normas da SECOM.",
@@ -346,35 +346,61 @@ window.CONFIG = {
         en: "Keep a margin of at least 2x between marks.",
       },
     ],
+    // Cada régua existe em PT e EN. O preview e os arquivos seguem o idioma da
+    // interface via t(); em EN, o card mostra a régua com os nomes em inglês.
     arquivos: [
       {
-        nome: { pt: "Régua horizontal — BIP + Governo Federal + ministérios (PT)", en: "Horizontal lockup — BIP + Federal Government + ministries (PT)" },
-        preview: "assets/parceiros/regua-bip-gov-ministerios-horizontal-pt.png",
+        nome: { pt: "Régua horizontal — BIP + Governo Federal + ministérios", en: "Horizontal lockup — BIP + Federal Government + ministries" },
+        preview: {
+          pt: "assets/parceiros/regua-bip-gov-ministerios-horizontal-pt.png",
+          en: "assets/parceiros/regua-bip-gov-ministerios-horizontal-en.png",
+        },
         largo: true,
-        formatos: { pdf: "assets/parceiros/regua-bip-gov-ministerios-horizontal-pt.pdf" },
+        formatos: {
+          pdf: {
+            pt: "assets/parceiros/regua-bip-gov-ministerios-horizontal-pt.pdf",
+            en: "assets/parceiros/regua-bip-gov-ministerios-horizontal-en.pdf",
+          },
+        },
       },
       {
-        nome: { pt: "Régua vertical — BIP + Governo Federal + ministérios (PT)", en: "Vertical lockup — BIP + Federal Government + ministries (PT)" },
-        preview: "assets/parceiros/regua-bip-gov-ministerios-vertical-pt.png",
-        formatos: { pdf: "assets/parceiros/regua-bip-gov-ministerios-vertical-pt.pdf" },
+        nome: { pt: "Régua vertical — BIP + Governo Federal + ministérios", en: "Vertical lockup — BIP + Federal Government + ministries" },
+        preview: {
+          pt: "assets/parceiros/regua-bip-gov-ministerios-vertical-pt.png",
+          en: "assets/parceiros/regua-bip-gov-ministerios-vertical-en.png",
+        },
+        formatos: {
+          pdf: {
+            pt: "assets/parceiros/regua-bip-gov-ministerios-vertical-pt.pdf",
+            en: "assets/parceiros/regua-bip-gov-ministerios-vertical-en.pdf",
+          },
+        },
       },
       {
-        nome: { pt: "Régua de parceiros (PT)", en: "Partner lockup (PT)" },
-        preview: "assets/parceiros/regua-parceiros-pt.png",
+        nome: { pt: "Régua de parceiros", en: "Partner lockup" },
+        preview: {
+          pt: "assets/parceiros/regua-parceiros-pt.png",
+          en: "assets/parceiros/regua-parceiros-en.png",
+        },
         largo: true,
-        formatos: { pdf: "assets/parceiros/regua-parceiros-pt.pdf", png: "assets/parceiros/regua-parceiros-pt.png" },
+        formatos: {
+          pdf: { pt: "assets/parceiros/regua-parceiros-pt.pdf", en: "assets/parceiros/regua-parceiros-en.pdf" },
+          png: { pt: "assets/parceiros/regua-parceiros-pt.png", en: "assets/parceiros/regua-parceiros-en.png" },
+        },
       },
       {
-        nome: { pt: "Régua de parceiros (EN)", en: "Partner lockup (EN)" },
-        preview: "assets/parceiros/regua-parceiros-en.png",
+        nome: { pt: "Governo Federal + ministérios", en: "Federal Government + ministries" },
+        preview: {
+          pt: "assets/parceiros/regua-gov-ministerios-pt.png",
+          en: "assets/parceiros/regua-gov-ministerios-en.png",
+        },
         largo: true,
-        formatos: { pdf: "assets/parceiros/regua-parceiros-en.pdf", png: "assets/parceiros/regua-parceiros-en.png" },
-      },
-      {
-        nome: { pt: "Governo Federal + ministérios (PT)", en: "Federal Government + ministries (PT)" },
-        preview: "assets/parceiros/regua-gov-ministerios-pt.png",
-        largo: true,
-        formatos: { pdf: "assets/parceiros/regua-gov-ministerios-pt.pdf" },
+        formatos: {
+          pdf: {
+            pt: "assets/parceiros/regua-gov-ministerios-pt.pdf",
+            en: "assets/parceiros/regua-gov-ministerios-en.pdf",
+          },
+        },
       },
     ],
   },
@@ -384,7 +410,7 @@ window.CONFIG = {
      --------------------------------------------------------------------- */
   manual: {
     estado: "aprovado",
-    atualizadoEm: "2026-07-23",
+    atualizadoEm: "2026-07-24",
     titulo: { pt: "Manual da Marca", en: "Brand Manual" },
     versao: "2.0",
     data: { pt: "Julho de 2026", en: "July 2026" },
@@ -392,15 +418,16 @@ window.CONFIG = {
       pt: "O documento normativo completo: conceito, arquitetura da marca, versões, área de proteção, tamanhos mínimos, paleta, tipografia e régua de parceiros.",
       en: "The complete normative document: concept, brand architecture, versions, clear space, minimum sizes, palette, typography and partner lockups.",
     },
-    // O manual existe apenas em português. Enquanto não houver versão EN,
-    // o site diz isso em vez de fingir que o link é bilíngue.
-    apenasPT: true,
-    avisoIdioma: {
-      pt: "",
-      en: "The Brand Manual is currently available in Portuguese only. An English version is planned.",
+    // Edições espelhadas: cada idioma normatiza a própria língua como principal.
+    // O PDF e o HTML seguem o idioma da interface via t().
+    pdf: {
+      pt: "assets/manual/manual-marca-bip-v2.pdf",
+      en: "assets/manual/bip-brand-guidelines-v2.pdf",
     },
-    pdf: "assets/manual/manual-marca-bip-v2.pdf",
-    html: "manual/",
+    html: {
+      pt: "manual/index.html",
+      en: "manual/en/index.html",
+    },
   },
 
   /* ---------------------------------------------------------------------

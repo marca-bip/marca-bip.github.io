@@ -112,7 +112,7 @@
   /* -------------------------------------------------------------- hero -- */
   function renderHero() {
     var h = C.hero;
-    var logo = lang === "en" ? "logo-bip-en-mono-negativo" : "logo-bip-pt-mono-negativo";
+    var logo = lang === "en" ? "logo-bip-en" : "logo-bip-pt";
 
     // h.texto é um array de parágrafos por idioma, não um par {pt,en} simples.
     var paragrafos = (h.texto[lang] || h.texto.pt).map(function (p) {
@@ -121,13 +121,15 @@
 
     set("hero",
       '<div class="hero__interno">' +
-        '<img class="hero__logo" src="assets/logos/svg/' + logo + '.svg" alt="' + esc(t(h.titulo)) + '" />' +
-        "<h1>" + esc(t(h.titulo)) + "</h1>" +
-        '<p class="hero__sub">' + esc(t(h.subtitulo)) + "</p>" +
-        '<div class="hero__texto">' +
-          paragrafos +
-          '<p class="hero__nota">' + esc(t(h.nota)) + "</p>" +
+        '<div class="hero__conteudo">' +
+          "<h1>" + esc(t(h.titulo)) + "</h1>" +
+          '<p class="hero__sub">' + esc(t(h.subtitulo)) + "</p>" +
+          '<div class="hero__texto">' +
+            paragrafos +
+            '<p class="hero__nota">' + esc(t(h.nota)) + "</p>" +
+          "</div>" +
         "</div>" +
+        '<img class="hero__logo" src="assets/logos/svg/' + logo + '.svg" alt="' + esc(t(h.titulo)) + '" />' +
       "</div>"
     );
   }
@@ -148,9 +150,9 @@
               '<p class="logo-card__nome">' + esc(t(v.nome)) + "</p>" +
               '<p class="logo-card__desc">' + esc(t(v.descricao)) + "</p>" +
               '<div class="formatos">' +
-                '<a class="formato" href="assets/logos/svg/' + base + '.svg" download>SVG</a>' +
-                '<a class="formato" href="assets/logos/pdf/' + base + '.pdf" download>PDF</a>' +
-                '<a class="formato" href="assets/logos/png/' + base + '@2x.png" download>PNG</a>' +
+                '<a class="formato" href="assets/logos/svg/' + base + '.svg" download target="_blank" rel="noopener">SVG</a>' +
+                '<a class="formato" href="assets/logos/pdf/' + base + '.pdf" download target="_blank" rel="noopener">PDF</a>' +
+                '<a class="formato" href="assets/logos/png/' + base + '@2x.png" download target="_blank" rel="noopener">PNG</a>' +
               "</div>" +
             "</div>" +
           "</div>"
@@ -296,12 +298,12 @@
       '<div class="grade-parceiros">' +
         P.arquivos.map(function (a) {
           var fmts = Object.keys(a.formatos).map(function (k) {
-            return '<a class="formato" href="' + a.formatos[k] + '" download>' + k.toUpperCase() + "</a>";
+            return '<a class="formato" href="' + t(a.formatos[k]) + '" download>' + k.toUpperCase() + "</a>";
           }).join("");
           return (
             '<div class="parceiro-card' + (a.largo ? " parceiro-card--largo" : "") + '">' +
               '<div class="parceiro-card__palco">' +
-                '<img src="' + a.preview + '" alt="' + esc(t(a.nome)) + '" loading="lazy" />' +
+                '<img src="' + t(a.preview) + '" alt="' + esc(t(a.nome)) + '" loading="lazy" />' +
               "</div>" +
               '<div class="parceiro-card__pe">' +
                 '<p class="logo-card__nome">' + esc(t(a.nome)) + "</p>" +
@@ -318,8 +320,6 @@
   /* ------------------------------------------------------------ manual -- */
   function renderManual() {
     var M = C.manual;
-    var aviso = (M.apenasPT && lang === "en" && t(M.avisoIdioma))
-      ? '<p class="aviso">' + esc(t(M.avisoIdioma)) + "</p>" : "";
 
     set("manual",
       cabeca(M) +
@@ -327,10 +327,9 @@
         '<p class="cartao__titulo">' + esc(t(M.titulo)) + " v" + esc(M.versao) + "</p>" +
         '<p class="cartao__meta">' + esc(t(M.data)) + "</p>" +
         "<p>" + esc(t(M.descricao)) + "</p>" +
-        aviso +
         '<div class="acoes">' +
-          '<a class="botao botao--primario" href="' + M.pdf + '" download>PDF</a>' +
-          '<a class="botao botao--secundario" href="' + M.html + '">' + esc(t(C.ui.verManual)) + "</a>" +
+          '<a class="botao botao--primario" href="' + t(M.pdf) + '" download target="_blank" rel="noopener">PDF</a>' +
+          '<a class="botao botao--secundario" href="' + t(M.html) + '" target="_blank" rel="noopener">' + esc(t(C.ui.verManual)) + "</a>" +
         "</div>" +
       "</div>"
     );

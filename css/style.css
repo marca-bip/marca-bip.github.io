@@ -100,8 +100,8 @@ a { color:var(--blue-500); }
 
 /* ---------------------------------------------------------------- hero -- */
 .hero {
-  background:linear-gradient(160deg, var(--blue-500) 0%, var(--blue-700) 62%, var(--blue-800) 100%);
-  color:var(--white);
+  background:var(--white);
+  color:var(--ink);
   padding:88px 24px 96px;
   position:relative; overflow:hidden;
 }
@@ -110,22 +110,26 @@ a { color:var(--blue-500); }
   content:""; position:absolute; left:0; right:0; bottom:0; height:5px;
   background:linear-gradient(90deg, var(--green-500) 0 60%, var(--yellow-500) 60% 100%);
 }
-.hero__interno { max-width:var(--max); margin:0 auto; }
-.hero__logo { height:110px; width:auto; margin-bottom:40px; }
+.hero__interno {
+  max-width:var(--max); margin:0 auto;
+  display:flex; align-items:center; justify-content:space-between; gap:56px;
+}
+.hero__conteudo { flex:1; min-width:0; }
+.hero__logo { width:34%; max-width:420px; height:auto; flex-shrink:0; }
 .hero h1 {
   font-size:clamp(38px, 5.6vw, 62px); line-height:1.08; margin:0 0 22px;
-  font-weight:800; letter-spacing:-.02em;
+  font-weight:800; letter-spacing:-.02em; color:var(--blue-500);
 }
 .hero__sub {
   font-size:clamp(18px, 2.2vw, 23px); line-height:1.45; font-weight:300;
-  color:var(--blue-100); max-width:44ch; margin:0 0 40px;
+  color:var(--ink-2); max-width:44ch; margin:0 0 40px;
 }
 .hero__texto { max-width:66ch; }
-.hero__texto p { margin:0 0 18px; color:#DDE3EE; font-size:16.5px; }
-.hero__texto p:last-child { color:var(--white); }
+.hero__texto p { margin:0 0 18px; color:var(--ink-2); font-size:16.5px; }
+.hero__texto p:last-child { color:var(--ink); }
 .hero__nota {
-  margin-top:36px; padding-top:22px; border-top:1px solid rgba(255,255,255,.18);
-  font-size:14px; color:var(--blue-200);
+  margin-top:36px; padding-top:22px; border-top:1px solid var(--line);
+  font-size:14px; color:var(--ink-3);
 }
 
 /* --------------------------------------------------------------- corpo -- */
@@ -146,6 +150,9 @@ a { color:var(--blue-500); }
   font-size:20px; margin:52px 0 20px; color:var(--blue-500); font-weight:bold;
 }
 .secao h3:first-of-type { margin-top:0; }
+/* Em #cores, o primeiro h3 (escala tonal) vem depois da grade de cores
+   institucionais, não da descrição da seção — precisa do respiro normal. */
+#cores h3:first-of-type { margin-top:52px; }
 
 /* --------------------------------------- selo de estado (assinatura) ---- */
 .selo {
@@ -329,12 +336,6 @@ a { color:var(--blue-500); }
 .botao--claro { background:var(--blue-500); color:var(--white); }
 .botao--claro:hover { background:var(--blue-600); }
 
-.aviso {
-  margin-top:22px; padding:14px 18px; border-radius:10px;
-  background:rgba(254,221,0,.14); border:1px solid rgba(254,221,0,.42);
-  font-size:14.5px; color:var(--yellow-100);
-}
-
 /* ------------------------------------------------------------ downloads -- */
 .grade-info { display:grid; gap:20px; grid-template-columns:repeat(auto-fit, minmax(min(238px, 100%), 1fr)); }
 .info-card {
@@ -393,7 +394,8 @@ a { color:var(--blue-500); }
      não cabem — o overflow-x:auto da regra base cuida disso. */
   .topo__nav { order:3; width:100%; }
   .hero { padding:60px 24px 68px; }
-  .hero__logo { height:78px; margin-bottom:30px; }
+  .hero__interno { flex-direction:column-reverse; gap:36px; }
+  .hero__logo { width:60%; max-width:260px; }
   .secao { padding:60px 0; }
   .cartao { padding:28px; }
 }
