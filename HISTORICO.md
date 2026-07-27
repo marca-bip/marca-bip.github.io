@@ -3,6 +3,17 @@
 Registro público das mudanças no sistema de marca e neste site.
 Formato: mais recente primeiro.
 
+## 2026-07-27 — Site publicado, manual em inglês
+
+- Site publicado em `https://marca-bip.github.io/`, ainda com `noindex`
+  enquanto aguarda a aprovação formal do Secretariado.
+- Manual de Marca v2.0 e Régua de Parceiros agora também disponíveis em
+  inglês (PDF e versão navegável), encerrando a pendência "apenas em
+  português" da publicação inicial.
+- Hero da página inicial redesenhado: fundo claro e logotipo bilíngue em
+  destaque.
+- Previsão do Design System antecipada de 4º para 3º trimestre de 2026.
+
 ## 2026-07-24 — Publicação inicial
 
 - Central de Marca no ar, em português e inglês.
