@@ -7,6 +7,10 @@ Formato: mais recente primeiro.
 
 - Site publicado em `https://marca-bip.github.io/`, ainda com `noindex`
   enquanto aguarda a aprovação formal do Secretariado.
+- `noindex` deixa de ser uma pendência temporária e passa a ser política
+  permanente: o site nunca deve ser indexado por buscadores, mesmo depois
+  da aprovação do Secretariado — acesso segue só por quem tem o link.
+  Reforçado com `robots.txt` na raiz e meta tag em todas as páginas.
 - Manual de Marca v2.0 e Régua de Parceiros agora também disponíveis em
   inglês (PDF e versão navegável), encerrando a pendência "apenas em
   português" da publicação inicial.
