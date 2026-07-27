@@ -30,6 +30,13 @@ Publicado por GitHub Pages direto da branch `main`.
   (`textoSobre()` em app.js), nunca pelo número do token.
 - Acessibilidade não é opcional: contraste AA, foco visível, navegação por
   teclado, `prefers-reduced-motion`.
+- O site nunca deve ser indexado por buscadores — acesso só por quem tem o
+  link, mesmo publicado em GitHub Pages público. Todo `.html` na raiz ou em
+  subpastas leva `<meta name="robots" content="noindex, nofollow">` no
+  `<head>`. Isso vale para qualquer página nova (ex.: futuras versões do
+  manual). Há também um `robots.txt` na raiz com `Disallow: /`. GitHub Pages
+  não permite header HTTP customizado, então a tag meta é a defesa real —
+  não remover nem tornar condicional.
 
 ## Fronteira com o repositório privado
 
