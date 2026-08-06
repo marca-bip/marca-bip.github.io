@@ -34,6 +34,7 @@ window.CONFIG = {
     copiarHex: { pt: "Clique para copiar o HEX", en: "Click to copy the HEX" },
     atualizadoEm: { pt: "Atualizado em", en: "Updated" },
     verManual: { pt: "Abrir o manual completo", en: "Open the full manual" },
+    voltarManual: { pt: "← Voltar", en: "← Back" },
     irParaTopo: { pt: "Voltar ao topo", en: "Back to top" },
     trocarIdioma: { pt: "English", en: "Português" },
     menu: { pt: "Seções", en: "Sections" },
@@ -192,7 +193,49 @@ window.CONFIG = {
   },
 
   /* ---------------------------------------------------------------------
-     3. Cores
+     3. Downloads (subitem de Logotipo — explica os botões dos cards acima,
+        não é mais uma seção própria no menu)
+     --------------------------------------------------------------------- */
+  downloads: {
+    titulo: { pt: "Downloads", en: "Downloads" },
+    descricao: {
+      pt: "Para baixar, clique no botão do formato desejado em cada card de logotipo abaixo — SVG, PDF ou PNG.",
+      en: "To download, click the button for the format you need on each logo card below — SVG, PDF or PNG.",
+    },
+    formatos: [
+      {
+        tag: "SVG",
+        titulo: { pt: "Web e digital", en: "Web and digital" },
+        descricao: {
+          pt: "Vetorial, leve, escala sem perda. Primeira escolha para telas.",
+          en: "Vector, lightweight, scales losslessly. First choice for screens.",
+        },
+      },
+      {
+        tag: "PDF",
+        titulo: { pt: "Impressão e fornecedores", en: "Print and vendors" },
+        descricao: {
+          pt: "Vetorial e universal. É o formato oficial de impressão da marca.",
+          en: "Vector and universal. The brand's official print format.",
+        },
+      },
+      {
+        tag: "PNG",
+        titulo: { pt: "Uso rápido", en: "Quick use" },
+        descricao: {
+          pt: "Para documentos, apresentações e e-mail. Fundo transparente, três densidades.",
+          en: "For documents, slides and email. Transparent background, three densities.",
+        },
+      },
+    ],
+    nota: {
+      pt: "O PDF é o formato vetorial oficial para impressão. Fornecedores que pedirem EPS podem usar o PDF — é vetorial e universalmente aceito.",
+      en: "PDF is the official vector format for print. Vendors asking for EPS can use the PDF — it is vector and universally accepted.",
+    },
+  },
+
+  /* ---------------------------------------------------------------------
+     4. Cores
      --------------------------------------------------------------------- */
   cores: {
     estado: "aprovado",
@@ -282,7 +325,7 @@ window.CONFIG = {
   },
 
   /* ---------------------------------------------------------------------
-     4. Tipografia
+     5. Tipografia
      --------------------------------------------------------------------- */
   tipografia: {
     estado: "aprovado",
@@ -318,7 +361,7 @@ window.CONFIG = {
   },
 
   /* ---------------------------------------------------------------------
-     5. Régua de Parceiros
+     6. Régua de Parceiros
      --------------------------------------------------------------------- */
   parceiros: {
     estado: "aprovado",
@@ -406,7 +449,7 @@ window.CONFIG = {
   },
 
   /* ---------------------------------------------------------------------
-     6. Manual da Marca
+     7. Manual da Marca
      --------------------------------------------------------------------- */
   manual: {
     estado: "aprovado",
@@ -431,7 +474,7 @@ window.CONFIG = {
   },
 
   /* ---------------------------------------------------------------------
-     7. Design System
+     8. Design System
      --------------------------------------------------------------------- */
   designSystem: {
     estado: "em-construcao",
@@ -441,23 +484,6 @@ window.CONFIG = {
     descricao: {
       pt: "Tokens, componentes e regras de acessibilidade para produtos digitais da BIP. Em construção — as escalas tonais desta página são a base dos tokens.",
       en: "Tokens, components and accessibility rules for BIP digital products. In progress — the tonal scales on this page are the basis of the tokens.",
-    },
-  },
-
-  /* ---------------------------------------------------------------------
-     8. Downloads (pacotes)
-     --------------------------------------------------------------------- */
-  downloads: {
-    estado: "aprovado",
-    atualizadoEm: "2026-07-24",
-    titulo: { pt: "Downloads", en: "Downloads" },
-    descricao: {
-      pt: "Formatos: SVG para web e digital, PDF para impressão e fornecedores, PNG para uso rápido em documentos e apresentações.",
-      en: "Formats: SVG for web and digital, PDF for print and vendors, PNG for quick use in documents and presentations.",
-    },
-    nota: {
-      pt: "O PDF é o formato vetorial oficial para impressão. Fornecedores que pedirem EPS podem usar o PDF — é vetorial e universalmente aceito.",
-      en: "PDF is the official vector format for print. Vendors asking for EPS can use the PDF — it is vector and universally accepted.",
     },
   },
 
@@ -478,11 +504,25 @@ window.CONFIG = {
         },
       },
       {
+        // partes[]: parágrafo montado em pedaços — trecho de texto simples ou,
+        // quando o pedaço tem `href`, um link. Ver renderGovernanca em app.js.
         titulo: { pt: "Antes de usar a marca", en: "Before using the brand" },
-        texto: {
-          pt: "Materiais que seguem o manual e usam os arquivos desta página não precisam de aprovação prévia. Precisam de aprovação: coassinatura com marcas de terceiros, adaptações do logotipo e qualquer aplicação fora do manual. Peças que incluam as marcas do PNUD ou do GCF passam também pela Comunicação do PNUD.",
-          en: "Materials that follow the manual and use the files on this page do not require prior approval. Approval is required for: co-branding with third-party marks, logo adaptations and any application outside the manual. Materials including the UNDP or GCF marks must also be cleared by UNDP Communications.",
-        },
+        partes: [
+          {
+            pt: "Peça sempre aprovação prévia ao Secretariado da BIP antes de usar a marca. Siga o ",
+            en: "Always ask the BIP Secretariat for prior approval before using the brand. Follow the ",
+          },
+          { pt: "Manual da Marca", en: "Brand Manual", href: "#manual" },
+          {
+            pt: ". Se a utilização já estiver aprovada, envie ao Secretariado todas as peças e mídias em que a marca foi aplicada, para aprovação final antes da veiculação. Para solicitar, escreva para ",
+            en: ". If use has already been approved, send the Secretariat every piece and media where the brand was applied, for final approval before publication. To request approval, write to ",
+          },
+          { pt: "bip@bndes.gov.br", en: "bip@bndes.gov.br", href: "mailto:bip@bndes.gov.br" },
+          {
+            pt: ". Peças que incluam as marcas do PNUD ou do GCF passam também pela Comunicação do PNUD.",
+            en: ". Materials including the UNDP or GCF marks must also be cleared by UNDP Communications.",
+          },
+        ],
       },
       {
         titulo: { pt: "Uso da marca por terceiros — Selo BIP", en: "Third-party use — the BIP Seal" },

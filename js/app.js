@@ -99,7 +99,6 @@
     { id: "parceiros",     rot: { pt: "Parceiros",  en: "Partners" } },
     { id: "manual",        rot: { pt: "Manual",     en: "Manual" } },
     { id: "design-system", rot: { pt: "Design System", en: "Design System" } },
-    { id: "downloads",     rot: { pt: "Downloads",  en: "Downloads" } },
     { id: "governanca",    rot: { pt: "Governança", en: "Governance" } }
   ];
 
@@ -137,6 +136,23 @@
   /* ---------------------------------------------------------- logotipo -- */
   function renderLogotipo() {
     var L = C.logotipo;
+    var D = C.downloads;
+
+    var downloads =
+      "<h3>" + esc(t(D.titulo)) + "</h3>" +
+      '<p class="secao__desc" style="margin-bottom:26px">' + esc(t(D.descricao)) + "</p>" +
+      '<div class="grade-info">' +
+        D.formatos.map(function (f) {
+          return (
+            '<div class="info-card">' +
+              '<span class="info-card__tag">' + f.tag + "</span>" +
+              "<h4>" + esc(t(f.titulo)) + "</h4>" +
+              "<p>" + esc(t(f.descricao)) + "</p>" +
+            "</div>"
+          );
+        }).join("") +
+      "</div>" +
+      '<p class="nota-caixa" style="margin-bottom:64px">' + esc(t(D.nota)) + "</p>";
 
     var familias = L.familias.map(function (fam) {
       var cards = L.versoes.map(function (v) {
@@ -188,7 +204,7 @@
         L.usosIncorretos.itens.map(function (i) { return "<li>" + esc(t(i)) + "</li>"; }).join("") +
       "</ul>";
 
-    set("logotipo", cabeca(L) + familias + regras + incorretos);
+    set("logotipo", cabeca(L) + downloads + familias + regras + incorretos);
   }
 
   /* ------------------------------------------------------------- cores -- */
@@ -329,10 +345,73 @@
         "<p>" + esc(t(M.descricao)) + "</p>" +
         '<div class="acoes">' +
           '<a class="botao botao--primario" href="' + t(M.pdf) + '" download target="_blank" rel="noopener">PDF</a>' +
-          '<a class="botao botao--secundario" href="' + t(M.html) + '" target="_blank" rel="noopener">' + esc(t(C.ui.verManual)) + "</a>" +
+          '<a class="botao botao--secundario" href="#manual-completo">' + esc(t(C.ui.verManual)) + "</a>" +
         "</div>" +
       "</div>"
     );
+  }
+
+  /* ------------------------------------------------- manual em tela cheia -- */
+  // "Abrir o manual completo" não sai da página: troca o corpo pelo iframe
+  // do manual, mantendo o cabeçalho fixo para navegar de volta às seções.
+  function renderManualViewer() {
+    set("manualBarra",
+      '<a class="manual-completo__voltar" href="#manual" aria-label="' + esc(t(C.ui.voltarManual).replace(/^[←\s]+/, "")) + '">' +
+        '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+      "</a>" +
+      '<span class="manual-completo__titulo">' + esc(t(C.manual.titulo)) + "</span>"
+    );
+  }
+
+  function manualEstaAberto() {
+    return location.hash.slice(1) === "manual-completo";
+  }
+
+  function sincronizarManual() {
+    var viewer = $("manualViewer");
+    var frame = document.querySelector(".manual-completo__frame");
+    if (!viewer || !frame) return;
+
+    if (manualEstaAberto()) {
+      var src = t(C.manual.html);
+      if (frame.getAttribute("src") !== src) frame.setAttribute("src", src);
+      frame.setAttribute("title", t(C.manual.titulo));
+      document.querySelector(".hero").hidden = true;
+      document.querySelector(".corpo").hidden = true;
+      document.querySelector(".rodape").hidden = true;
+      viewer.hidden = false;
+    } else {
+      var estavaAberto = !viewer.hidden;
+      viewer.hidden = true;
+      document.querySelector(".hero").hidden = false;
+      document.querySelector(".corpo").hidden = false;
+      document.querySelector(".rodape").hidden = false;
+      // Enquanto o manual estava aberto, o alvo do hash ficou com display:none
+      // e o navegador não conseguiu rolar até ele sozinho. Refazemos a rolagem
+      // aqui, agora que a seção voltou a ter layout.
+      if (estavaAberto) {
+        var alvo = document.getElementById(location.hash.slice(1));
+        if (alvo) alvo.scrollIntoView();
+      }
+    }
+  }
+
+  window.addEventListener("hashchange", sincronizarManual);
+
+  // A barra do manual (sticky) precisa encostar exatamente embaixo do
+  // cabeçalho fixo. A altura do cabeçalho varia (a nav quebra linha em
+  // telas estreitas), então é medida de verdade em vez de um número fixo.
+  var topoEl = document.querySelector(".topo");
+  function ajustarAlturaTopo() {
+    document.documentElement.style.setProperty("--topo-altura", topoEl.getBoundingClientRect().height + "px");
+  }
+  if (topoEl) {
+    if ("ResizeObserver" in window) {
+      new ResizeObserver(ajustarAlturaTopo).observe(topoEl);
+    } else {
+      ajustarAlturaTopo();
+      window.addEventListener("resize", ajustarAlturaTopo);
+    }
   }
 
   /* ----------------------------------------------------- design system -- */
@@ -346,45 +425,25 @@
     );
   }
 
-  /* --------------------------------------------------------- downloads -- */
-  function renderDownloads() {
-    var D = C.downloads;
-    var formatos = [
-      { tag: "SVG", h: { pt: "Web e digital",        en: "Web and digital" },
-                    p: { pt: "Vetorial, leve, escala sem perda. Primeira escolha para telas.",
-                         en: "Vector, lightweight, scales losslessly. First choice for screens." } },
-      { tag: "PDF", h: { pt: "Impressão e fornecedores", en: "Print and vendors" },
-                    p: { pt: "Vetorial e universal. É o formato oficial de impressão da marca.",
-                         en: "Vector and universal. The brand's official print format." } },
-      { tag: "PNG", h: { pt: "Uso rápido",           en: "Quick use" },
-                    p: { pt: "Para documentos, apresentações e e-mail. Fundo transparente, três densidades.",
-                         en: "For documents, slides and email. Transparent background, three densities." } }
-    ];
-    set("downloads",
-      cabeca(D) +
-      '<div class="grade-info">' +
-        formatos.map(function (f) {
-          return (
-            '<div class="info-card">' +
-              '<span class="info-card__tag">' + f.tag + "</span>" +
-              "<h4>" + esc(t(f.h)) + "</h4>" +
-              "<p>" + esc(t(f.p)) + "</p>" +
-            "</div>"
-          );
-        }).join("") +
-      "</div>" +
-      '<p class="nota-caixa">' + esc(t(D.nota)) + "</p>"
-    );
+  /* -------------------------------------------------------- governança -- */
+  // Junta um bloco.partes[] em HTML: cada pedaço é texto puro, ou um link
+  // quando tem `href`. Permite embutir um link no meio da frase sem sair
+  // do modelo "todo texto vem do config".
+  function partes(arr) {
+    return arr.map(function (p) {
+      var texto = esc(t(p));
+      return p.href ? '<a href="' + p.href + '">' + texto + "</a>" : texto;
+    }).join("");
   }
 
-  /* -------------------------------------------------------- governança -- */
   function renderGovernanca() {
     var G = C.governanca;
     set("governanca",
       cabeca(G) +
       '<div class="blocos-gov">' +
         G.blocos.map(function (b) {
-          return '<div class="bloco-gov"><h4>' + esc(t(b.titulo)) + "</h4><p>" + esc(t(b.texto)) + "</p></div>";
+          var corpo = b.partes ? partes(b.partes) : esc(t(b.texto));
+          return '<div class="bloco-gov"><h4>' + esc(t(b.titulo)) + "</h4><p>" + corpo + "</p></div>";
         }).join("") +
       "</div>"
     );
@@ -449,25 +508,61 @@
 
   /* ------------------------------------------------- seção ativa no nav -- */
   function observarSecoes() {
-    if (!("IntersectionObserver" in window)) return;
     var links = {};
     document.querySelectorAll('[data-slot="nav"] a').forEach(function (a) {
       links[a.getAttribute("href").slice(1)] = a;
     });
-    var obs = new IntersectionObserver(function (entradas) {
-      entradas.forEach(function (e) {
-        var a = links[e.target.id];
-        if (!a) return;
-        if (e.isIntersecting) {
-          Object.keys(links).forEach(function (k) { links[k].removeAttribute("aria-current"); });
-          a.setAttribute("aria-current", "true");
-        }
-      });
-    }, { rootMargin: "-92px 0px -70% 0px" });
-    SECOES.forEach(function (s) {
-      var el = document.getElementById(s.id);
-      if (el) obs.observe(el);
-    });
+
+    // A seção ativa é sempre a última (na ordem real da página) cujo topo já
+    // passou da linha logo abaixo do cabeçalho fixo — scrollspy tradicional
+    // por geometria. Um IntersectionObserver só dispara em momentos em que
+    // algum alvo cruza uma faixa fixa; durante uma rolagem suave longa
+    // (scroll-behavior:smooth), esse cruzamento pode acontecer bem antes do
+    // scroll assentar, e nada dispara um recálculo depois — o destaque fica
+    // preso na seção anterior. Ouvir "scroll" recalcula a cada quadro e
+    // sempre converge para a posição final correta.
+    function secaoAtiva() {
+      var linha = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--topo-altura")) + 1;
+      var atual = null;
+      for (var i = 0; i < SECOES.length; i++) {
+        var el = document.getElementById(SECOES[i].id);
+        // getClientRects() vazio = elemento (ou ancestral) com display:none,
+        // como as seções dentro de .corpo enquanto o manual está aberto.
+        if (!el || el.getClientRects().length === 0) continue;
+        if (el.getBoundingClientRect().top <= linha) atual = SECOES[i].id;
+      }
+      return atual;
+    }
+
+    var ativaAtual = null;
+    function atualizar() {
+      var ativa = secaoAtiva();
+      if (!ativa || ativa === ativaAtual) return;
+      ativaAtual = ativa;
+      Object.keys(links).forEach(function (k) { links[k].removeAttribute("aria-current"); });
+      links[ativa].setAttribute("aria-current", "true");
+    }
+
+    var agendada = false;
+    function agendarAtualizacao() {
+      if (agendada) return;
+      agendada = true;
+      requestAnimationFrame(function () { agendada = false; atualizar(); });
+    }
+
+    window.addEventListener("scroll", agendarAtualizacao, { passive: true });
+    window.addEventListener("hashchange", agendarAtualizacao);
+    // As imagens com loading="lazy" (cartões de logotipo, régua de
+    // parceiros) só carregam ao entrar perto da tela — ao rolar até uma
+    // seção pela primeira vez, elas chegam e empurram o layout, mas esse
+    // reflow por si só não dispara "scroll". Um ResizeObserver no corpo da
+    // página cobre esse caso (e qualquer outra mudança de altura).
+    if ("ResizeObserver" in window) {
+      new ResizeObserver(agendarAtualizacao).observe(document.body);
+    } else {
+      window.addEventListener("load", agendarAtualizacao);
+    }
+    agendarAtualizacao();
   }
 
   /* ------------------------------------------------------------ montar -- */
@@ -486,8 +581,8 @@
     renderTipografia();
     renderParceiros();
     renderManual();
+    renderManualViewer();
     renderDesignSystem();
-    renderDownloads();
     renderGovernanca();
     renderRodape();
   }
@@ -502,6 +597,7 @@
       history.replaceState(null, "", url);
       render();
       observarSecoes();
+      sincronizarManual();
     });
   }
 
@@ -514,4 +610,5 @@
 
   render();
   observarSecoes();
+  sincronizarManual();
 })();

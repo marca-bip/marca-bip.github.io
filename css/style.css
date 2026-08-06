@@ -28,10 +28,11 @@
   --shadow-sm:0 2px 10px rgba(1,33,105,.06);
   --max:1180px;
   --font:Arial, "Helvetica Neue", Helvetica, sans-serif;
+  --topo-altura:92px; /* medida de verdade via JS assim que a página carrega */
 }
 
 *, *::before, *::after { box-sizing:border-box; }
-html { scroll-behavior:smooth; scroll-padding-top:92px; }
+html { scroll-behavior:smooth; scroll-padding-top:var(--topo-altura); }
 @media (prefers-reduced-motion:reduce) {
   html { scroll-behavior:auto; }
   *, *::before, *::after { animation-duration:.01ms !important; transition-duration:.01ms !important; }
@@ -144,7 +145,7 @@ a { color:var(--blue-500); }
   font-size:clamp(28px, 3.6vw, 38px); margin:0;
   color:var(--blue-500); font-weight:800; letter-spacing:-.015em;
 }
-.secao__desc { font-size:18px; color:var(--ink-2); max-width:62ch; margin:0; }
+.secao__desc { font-size:18px; color:var(--ink-2); max-width:none; margin:0; }
 
 .secao h3 {
   font-size:20px; margin:52px 0 20px; color:var(--blue-500); font-weight:bold;
@@ -171,7 +172,7 @@ a { color:var(--blue-500); }
 /* -------------------------------------------------------------- logos --- */
 .familia { margin-bottom:64px; }
 .familia__nome { font-size:21px; font-weight:bold; color:var(--blue-500); margin:0 0 6px; }
-.familia__desc { font-size:15.5px; color:var(--ink-2); margin:0 0 24px; max-width:60ch; }
+.familia__desc { font-size:15.5px; color:var(--ink-2); margin:0 0 24px; max-width:none; }
 
 .grade-logos { display:grid; gap:22px; grid-template-columns:repeat(auto-fill, minmax(min(258px, 100%), 1fr)); }
 
@@ -189,11 +190,14 @@ a { color:var(--blue-500); }
 .logo-card__palco--azul   { background:var(--blue-500); }
 .logo-card__palco img { max-height:100%; width:auto; object-fit:contain; }
 
-.logo-card__pe { padding:16px 18px 18px; border-top:1px solid var(--line); }
+.logo-card__pe {
+  padding:16px 18px 18px; border-top:1px solid var(--line);
+  display:flex; flex-direction:column; flex:1;
+}
 .logo-card__nome { font-size:15px; font-weight:bold; margin:0 0 4px; }
 .logo-card__desc { font-size:13.5px; color:var(--ink-2); margin:0 0 14px; line-height:1.45; }
 
-.formatos { display:flex; gap:7px; flex-wrap:wrap; }
+.formatos { display:flex; gap:7px; flex-wrap:wrap; margin-top:auto; }
 .formato {
   font-size:12.5px; font-weight:bold; letter-spacing:.03em;
   padding:5px 11px; border-radius:7px; text-decoration:none;
@@ -386,6 +390,42 @@ a { color:var(--blue-500); }
   opacity:0; pointer-events:none; transition:opacity .2s, transform .2s; z-index:80;
 }
 .toast--visivel { opacity:1; transform:translate(-50%, 0); }
+
+/* ------------------------------------------------- manual em tela cheia -- */
+/* Ocupa o espaço abaixo do cabeçalho fixo. O botão de voltar e o rótulo do
+   manual flutuam sobre o conteúdo (translúcidos, com blur) em vez de ocupar
+   uma barra própria — mantém o contexto sem tomar espaço vertical. */
+.manual-completo { display:flex; flex-direction:column; min-height:calc(100vh - var(--topo-altura)); }
+.manual-completo[hidden] { display:none; }
+/* Botão e badge flutuam independentes (cada um com seu próprio position:fixed
+   ancorado a um único lado) em vez de dividir uma barra full-width — assim
+   nenhum dos dois pode, sozinho, alargar a página e criar scroll horizontal
+   em telas estreitas. */
+.manual-completo__voltar,
+.manual-completo__titulo {
+  position:fixed; top:calc(var(--topo-altura) + 16px); z-index:40;
+  background:rgba(255,255,255,.72); backdrop-filter:saturate(180%) blur(10px);
+  -webkit-backdrop-filter:saturate(180%) blur(10px);
+  border:1px solid rgba(255,255,255,.6);
+  box-shadow:0 2px 12px rgba(15,23,42,.14);
+}
+.manual-completo__voltar {
+  left:24px;
+  display:inline-flex; align-items:center; justify-content:center;
+  width:40px; height:40px; border-radius:50%;
+  color:var(--blue-500); text-decoration:none;
+  transition:background .15s, box-shadow .15s;
+}
+.manual-completo__voltar:hover,
+.manual-completo__voltar:focus-visible { background:rgba(255,255,255,.92); }
+.manual-completo__voltar svg { width:20px; height:20px; }
+.manual-completo__titulo {
+  right:24px;
+  font-size:13px; font-weight:bold; color:var(--blue-500);
+  padding:9px 18px; border-radius:999px; white-space:nowrap;
+  max-width:calc(100vw - 88px); overflow:hidden; text-overflow:ellipsis;
+}
+.manual-completo__frame { flex:1; width:100%; min-height:70vh; border:0; background:var(--surface); }
 
 /* ------------------------------------------------------------ responsivo -- */
 @media (max-width:860px) {

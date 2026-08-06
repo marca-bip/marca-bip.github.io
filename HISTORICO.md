@@ -3,6 +3,25 @@
 Registro público das mudanças no sistema de marca e neste site.
 Formato: mais recente primeiro.
 
+## 2026-08-06 — Ajustes de layout e governança
+
+- Cards de logotipo: os botões de formato (SVG, PDF, PNG) agora ficam
+  sempre na mesma linha entre os quatro cards de uma versão, mesmo quando
+  a descrição tem tamanhos diferentes.
+- "Downloads" deixou de ser uma seção própria no menu. Passa a ser um
+  subitem dentro de Logotipo, logo após o texto da seção, explicando que
+  o download é feito clicando no botão do formato desejado em cada card
+  — evita a confusão de uma seção "Downloads" sem nenhum botão funcional.
+- Textos de seção (descrição principal e descrição de cada família de
+  logotipo — Assinatura PT, EN, Redux, Símbolo) passam a ocupar toda a
+  largura do conteúdo, em vez de quebrar cedo numa coluna estreita.
+- Texto de "Antes de usar a marca" (Governança) reescrito: pede aprovação
+  prévia ao Secretariado em primeiro lugar, depois aponta o Manual da
+  Marca (com link direto para a seção), pede o envio das peças e mídias
+  aplicadas para aprovação final quando o uso já estiver aprovado, indica
+  o e-mail de contato da BIP e mantém a regra de que peças com as marcas
+  do PNUD ou do GCF passam também pela Comunicação do PNUD.
+
 ## 2026-07-27 — Site publicado, manual em inglês
 
 - Site publicado em `https://marca-bip.github.io/`, ainda com `noindex`
