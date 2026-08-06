@@ -5,6 +5,12 @@ Formato: mais recente primeiro.
 
 ## 2026-08-06 — Ajustes de layout e governança
 
+- Manual da Marca passa a abrir dentro da própria página (não mais em nova
+  aba): o botão "Abrir o manual completo" carrega o manual num visualizador
+  embutido, mantendo o menu do site visível. Para voltar, um botão circular
+  translúcido flutua sobre o conteúdo, e o rótulo "Manual da Marca" fica num
+  badge também translúcido — sem ocupar uma barra própria, preservando o
+  espaço vertical.
 - Cards de logotipo: os botões de formato (SVG, PDF, PNG) agora ficam
   sempre na mesma linha entre os quatro cards de uma versão, mesmo quando
   a descrição tem tamanhos diferentes.
